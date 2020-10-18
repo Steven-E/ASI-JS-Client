@@ -3,15 +3,17 @@ var authorize = require("./GetToken.js");
 var party = require("./GetParty101");
 var secrets = require("./secrets.js");
 const { baseUri } = require("./secrets.js");
+var partyId = "10001";
+
+async function sleep() {
+    await setTimeout(() => {}, 20000);
+}
 
 server();
+sleep().finally();
 
-var accessToken = authorize(
-    secrets.clientID,
-    secrets.clientSecret,
-    secrets.baseUri
-);
-console.log("access token: ", accessToken);
+authorize(secrets.clientID, secrets.clientSecret, secrets.baseUri)
+    .catch((error) => console.log("error: ", error))
+    .finally();
 
-var partyId = 10001;
-party(accessToken, partyId, baseUri);
+sleep().finally();

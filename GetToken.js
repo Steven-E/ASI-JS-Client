@@ -1,6 +1,7 @@
-module.exports = function getAuthToken(clientID, clientSecret, baseUri) {
+module.exports = async function getAuthToken(clientID, clientSecret, baseUri) {
     var fetch = require("node-fetch");
     const { URLSearchParams } = require("url");
+    var party = require("./GetParty101");
 
     var myHeaders = new fetch.Headers();
     myHeaders.append("content-type", "application/x-www-form-urlencoded");
@@ -23,12 +24,13 @@ module.exports = function getAuthToken(clientID, clientSecret, baseUri) {
     var accessToken = "";
     process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
 
-    fetch(fetchUrl, requestOptions)
-        .then((response) => response.json())
-        .then((result) => {
-            accessToken = result.access_token;
-        })
-        .catch((error) => console.log("error", error));
+    try {
+        var response = await fetch(fetchUrl, requestOptions);
+        var result = await response.json();
+        accessToken = result.access_token;
+    } catch (error) {
+        console.log(error);
+    }
 
-    return accessToken;
+    party(accessToken, "101", baseUri);
 };

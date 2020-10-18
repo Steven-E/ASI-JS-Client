@@ -1,4 +1,4 @@
-module.exports = function GetParty(accessToken, id, baseUri) {
+module.exports = async function GetParty(accessToken, id, baseUri) {
     var fetch = require("node-fetch");
 
     var myHeaders = new fetch.Headers();
@@ -11,13 +11,16 @@ module.exports = function GetParty(accessToken, id, baseUri) {
         redirect: "follow",
     };
 
-    var endpoint = "api/Party/10001";
+    var endpoint = "api/Party";
     var fetchUrl = baseUri + endpoint;
 
     process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
 
-    fetch(fetchUrl, requestOptions)
-        .then((response) => response.json())
-        .then((result) => console.log(result))
-        .catch((error) => console.log("error", error));
+    try {
+        var response = await fetch(fetchUrl, requestOptions);
+        var result = await response.json();
+        console.log("Party:\n" + JSON.stringify(result));
+    } catch (error) {
+        console.log(error);
+    }
 };
