@@ -19,7 +19,7 @@ module.exports = async function GetParty(accessToken, id, baseUri) {
     try {
         var response = await fetch(fetchUrl, requestOptions);
         var result = await response.json();
-        console.log("Party:\n" + JSON.stringify(result));
+        console.log("Party:\n" + JSON.stringify(result, null, 2));
     } catch (error) {
         console.log(error);
     }
