@@ -8,6 +8,7 @@ In the LocalServer.js file, make sure you set up the server to run at the addres
 
 ## Set Up Your Secrets
 Create a file, here called "secrets.js", in the same folder as AsiJsClient.js. Put the name of this file in the .gitignore file if you're using git so that it is not uploaded to a public repository. Define your client ID, client secret, and the base URL of the iMIS instance you will be querying. (https://myimisinstance.com/) Make sure you add this line to the end of the secrets.js file: 
+
 `module.exports = { baseUri, clientID, clientSecret };`
 
 ## Set Up Your Endpoint(s)
