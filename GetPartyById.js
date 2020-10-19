@@ -11,7 +11,7 @@ module.exports = async function GetParty(accessToken, id, baseUri) {
         redirect: "follow",
     };
 
-    var endpoint = "api/Party";
+    var endpoint = "api/Party/" + id;
     var fetchUrl = baseUri + endpoint;
 
     process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;

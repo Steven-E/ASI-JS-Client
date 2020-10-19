@@ -1,7 +1,7 @@
 module.exports = async function getAuthToken(clientID, clientSecret, baseUri) {
     var fetch = require("node-fetch");
     const { URLSearchParams } = require("url");
-    var party = require("./GetParty101");
+    var party = require("./GetPartyById");
 
     var myHeaders = new fetch.Headers();
     myHeaders.append("content-type", "application/x-www-form-urlencoded");
@@ -32,5 +32,5 @@ module.exports = async function getAuthToken(clientID, clientSecret, baseUri) {
         console.log(error);
     }
 
-    party(accessToken, "101", baseUri);
+    party(accessToken, "55fab524-9e8f-4c81-8057-01ae34eb447a", baseUri);
 };
