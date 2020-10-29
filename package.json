@@ -1,5 +1,5 @@
 {
-    "name": "test-01",
+    "name": "asijsclient",
     "private": "true",
     "scripts": {
         "start": "node AsiJsClient.js"

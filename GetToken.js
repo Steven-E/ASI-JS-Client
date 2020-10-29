@@ -1,4 +1,5 @@
 module.exports = async function getAuthToken(clientID, clientSecret, baseUri) {
+    // baseUri ends with a slash
     var fetch = require("node-fetch");
     const { URLSearchParams } = require("url");
     var party = require("./GetPartyById");
@@ -8,8 +9,8 @@ module.exports = async function getAuthToken(clientID, clientSecret, baseUri) {
 
     var urlencoded = new URLSearchParams();
     urlencoded.append("grant_type", "password");
-    urlencoded.append("username", clientID);
-    urlencoded.append("password", clientSecret);
+    urlencoded.append("username", clientID); // the client ID you registered with iMIS
+    urlencoded.append("password", clientSecret); // the client secret you registered with iMIS
 
     var requestOptions = {
         method: "post",
@@ -22,7 +23,6 @@ module.exports = async function getAuthToken(clientID, clientSecret, baseUri) {
     var fetchUrl = baseUri + endpoint;
 
     var accessToken = "";
-    process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
 
     try {
         var response = await fetch(fetchUrl, requestOptions);
@@ -32,5 +32,5 @@ module.exports = async function getAuthToken(clientID, clientSecret, baseUri) {
         console.log(error);
     }
 
-    party(accessToken, "55fab524-9e8f-4c81-8057-01ae34eb447a", baseUri);
+    party(accessToken, "55fab524-9e8f-4c81-8057-01ae34eb447a", baseUri); // the string is the contact key for the Party you want to access
 };

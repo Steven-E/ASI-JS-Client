@@ -1,18 +1,15 @@
 var server = require("./LocalServer.js");
 var authorize = require("./GetToken.js");
-var party = require("./GetPartyById");
-var secrets = require("./secrets.js");
-const { baseUri } = require("./secrets.js");
-var partyId = "55fab524-9e8f-4c81-8057-01ae34eb447a";
+var secrets = require("./secrets.js"); // Do not commit this file to source control. It contains sensitive information
 
 async function sleep() {
     await setTimeout(() => {}, 20000);
 }
 
 server();
-sleep().finally();
+sleep().finally(); // just a pause to allow the server to get started
 
-authorize(secrets.clientID, secrets.clientSecret, secrets.baseUri)
+authorize(secrets.clientID, secrets.clientSecret, secrets.baseUri) // all action takes place in GetToken.js
     .catch((error) => console.log("error: ", error))
     .finally();
 

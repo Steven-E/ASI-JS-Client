@@ -1,7 +1,7 @@
 module.exports = function startServer() {
     const http = require("http");
 
-    const port = process.env.PORT || 3000;
+    const port = process.env.PORT || 3000; // make sure the port matches the one you register with iMIS
 
     const server = http.createServer((req, res) => {
         res.statusCode = 200;
